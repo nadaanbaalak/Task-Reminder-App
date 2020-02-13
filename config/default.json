@@ -1,0 +1,4 @@
+{
+    "mongoURI":"mongodb+srv://abhishek:Hathi420@taskapp-tapyx.mongodb.net/test?retryWrites=true&w=majority",
+    "jwtSecret":"oneTwoKaFour"
+}

@@ -4,8 +4,10 @@
   "description": "Task manger web app",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon index.js",
-    "start":"node index.js"
+    "server": "nodemon src/index.js",
+    "start":"node src/index.js",
+    "client": "npm start --prefix client",
+    "dev":"concurrently \"npm run server\" \"npm run client\""
   },
   "author": "Abhishek Sharma",
   "license": "ISC",
