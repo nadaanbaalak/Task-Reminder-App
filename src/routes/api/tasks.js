@@ -105,22 +105,26 @@ router.get('/:id',auth, async (req,res)=>{
     }
 });
 
-//@route    GET /api/tasks/:id
-//@desc     Get a single task
+//@route    Delete /api/tasks/:id
+//@desc     Delete a single task
 //@access   Private
 router.delete('/:id',auth, async (req,res)=>{
     try {
         //verifying whether the post belong to user performing the delete action
+        console.log('1->1')
+        const task = await Task.findById(req.params.id);
         if(task.owner.toString()!==req.user_id)
         {
             res.status(401).json({msg: 'Not Allowed'});
         }
-        const task = await Task.findById(req.params.id);
+        console.log('1->2')
+        
         if(!task)
         {
             return res.status(404).json({msg:'Task not found'});
         }
-        await task.remove();
+        console.log('1->3')
+        await task.delete();
         res.json(task);
     } catch (error) {
         console.log(error.message);

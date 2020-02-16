@@ -9,8 +9,8 @@ const auth = require('../../middleware/auth');
 const User = require('../../models/User')
 
 //@route GET api/auth
-//@desc  
-//access Public
+//@desc  get user by token
+//access Private
 
 router.get('/',auth, async (req,res)=>{
     try {
@@ -23,7 +23,7 @@ router.get('/',auth, async (req,res)=>{
     }
 });
 
-//@route  POST /api/users
+//@route  POST /api/auth
 //@desc   Authenticate user and get token
 //@access Public
 router.post('/',[
@@ -52,7 +52,7 @@ router.post('/',[
         jwt.sign({id:user.id},config.get('jwtSecret'),{expiresIn:360000},(error,token)=>{
             if(error)
                 throw error;
-            return res.send({token,user});
+            return res.send({token});
         })
 
     } catch(error)
