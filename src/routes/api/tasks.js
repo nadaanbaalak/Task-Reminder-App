@@ -13,20 +13,27 @@ router.post('/', [auth,[
     check('description','Description is required').not().isEmpty()
 ]], async (req,res)=>{
     const errors = validationResult(req);
+    console.log('1->1')
     if(!errors.isEmpty())
     {
         return res.status(400).send({err:errors.array()});
     }
     
     try{
+        console.log('1->2')
         const task = new Task({
             ...req.body,
             owner:req.user_id
         });
+        console.log('1->3')
+        console.log(task)
         await task.save();
+        console.log('1->4')
         res.status(201).send(task);
+        console.log('1->5')
     } catch(error)
     {
+        console.log('1->6')
         res.status(500).send(error);
     }
 
@@ -45,7 +52,7 @@ router.patch('/:id', [auth,[
         return res.status(400).send({err:errors.array()})
     }
     const updates = Object.keys(req.body);
-    const allowedUpdates = ['description', 'completed'];
+    const allowedUpdates = ['description', 'due_at','toBeReminded'];
     const isValidOp = updates.every((update)=>{
         return allowedUpdates.includes(update);
     });
@@ -111,19 +118,16 @@ router.get('/:id',auth, async (req,res)=>{
 router.delete('/:id',auth, async (req,res)=>{
     try {
         //verifying whether the post belong to user performing the delete action
-        console.log('1->1')
+        
         const task = await Task.findById(req.params.id);
         if(task.owner.toString()!==req.user_id)
         {
             res.status(401).json({msg: 'Not Allowed'});
-        }
-        console.log('1->2')
-        
+        }  
         if(!task)
         {
             return res.status(404).json({msg:'Task not found'});
-        }
-        console.log('1->3')
+        }        
         await task.delete();
         res.json(task);
     } catch (error) {

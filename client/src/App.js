@@ -10,11 +10,12 @@ import setAuthToken from './utils/setAuthToken';
 import PrivateRoute from './components/routing/PrivateRoute';
 import CreateProfile from './components/profile-forms/CreateProfile';
 import EditProfile from './components/profile-forms/EditProfile';
-import EditTask from './components/Tasks/TaskUpdateForm';
 import {loadUser} from './actions/auth';
 import Profiles from './components/profile/profiles';
 import Profile from './components/profiles/profile';
 import Tasks from './components/Tasks/Tasks';
+import EditTask from './components/Tasks/TaskUpdateForm';
+import TaskForm from './components/Tasks/TaskForm';
 import './App.css';
 
 //Redux
@@ -51,6 +52,7 @@ const App = ()=>{
               <PrivateRoute exact path="/edit-profile" component={EditProfile}/>
               <PrivateRoute exact path="/tasks" component={Tasks}/>
               <PrivateRoute exact path="/edit-task" component={EditTask}/>
+              <PrivateRoute exact path="/create-task" component={TaskForm}/>
             </Switch>
           </section>
         </Fragment>

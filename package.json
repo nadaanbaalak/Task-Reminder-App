@@ -5,9 +5,9 @@
   "main": "index.js",
   "scripts": {
     "server": "nodemon src/index.js",
-    "start":"node src/index.js",
+    "start": "node src/index.js",
     "client": "npm start --prefix client",
-    "dev":"concurrently \"npm run server\" \"npm run client\""
+    "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "author": "Abhishek Sharma",
   "license": "ISC",
@@ -17,6 +17,7 @@
     "express-validator": "^6.4.0",
     "gravatar": "^1.8.0",
     "jsonwebtoken": "^8.5.1",
+    "moment": "^2.24.0",
     "mongoose": "^5.8.11",
     "request": "^2.88.0"
   },

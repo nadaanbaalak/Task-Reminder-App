@@ -3,7 +3,8 @@ import {
     GET_TASKS,
     TASK_ERROR,
     UPDATE_TASK,
-    DELETE_TASK
+    DELETE_TASK,
+    ADD_TASK
 } from '../actions/types';
 
 const initialState = {
@@ -23,10 +24,16 @@ export default function(state=initialState,action) {
                 tasks:payload,
                 loading:false
             };
+        case ADD_TASK:
+            return {
+                ...state,
+                tasks:[...state.tasks,payload],
+                loading:false
+            }
         case GET_TASK:
             return {
                 ...state,
-                task:payload,
+                task:payload, 
                 loading:false
             }
         case DELETE_TASK:

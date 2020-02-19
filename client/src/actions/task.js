@@ -6,7 +6,8 @@ import {
     GET_TASKS,
     TASK_ERROR,
     UPDATE_TASK,
-    DELETE_TASK
+    DELETE_TASK,
+    ADD_TASK
 } from './types';
 
 //get a single task by id
@@ -43,7 +44,7 @@ export const getTasks = () => async dispatch =>{
 
 
 //Update Task
-export const updateTask = (taskId,formData,history) => async dispatch =>{
+export const updateTask = (taskId,formData) => async dispatch =>{
     try {
         const res = await axios.patch(`/api/tasks/${taskId}`,formData)
         dispatch({
@@ -51,7 +52,7 @@ export const updateTask = (taskId,formData,history) => async dispatch =>{
             payload:res.data
         })
         dispatch(setAlert('Task Updated','success'));
-        history.push("/tasks"); //can't use redirect in an action
+        //history.push("/tasks"); //can't use redirect in an action
     } catch (error) {
         dispatch({
             type:TASK_ERROR,
@@ -78,5 +79,35 @@ export const deleteTask = taskId => async dispatch=>{
             type:TASK_ERROR,
             payload:{msg: error.response.statusText, status: error.response.status }
         });
+    }
+}
+
+
+//Add a task
+
+export const addTask = (formData) => async dispatch=>{
+    const config = {
+        headers:{
+            'Content-Type':'application/json'
+        }
+    }
+    try {   
+        console.log(1)
+        const res = await axios.post(`/api/tasks/`,formData,config);
+        console.log(2)
+        dispatch({
+            type:ADD_TASK,
+            payload:res.data
+        });
+        console.log(3)
+        dispatch(setAlert('Task Added','success'));
+       // history.push("/tasks")
+    } catch (error) {
+        //console.log('Inside catch')
+        dispatch({
+            type:TASK_ERROR,
+            payload:{msg: error.response.statusText, status: error.response.status }
+        });
+        dispatch(setAlert('Operation Failed','danger'));
     }
 }

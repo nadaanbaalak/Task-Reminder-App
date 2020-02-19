@@ -3,8 +3,8 @@ import {Link} from 'react-router-dom';
 
 const DashboardEdit = () =>{
     return (
-        <div class="dash-buttons">
-            <Link to="/edit-profile" class="btn btn-light">Edit Profile</Link>
+        <div className="dash-buttons">
+            <Link to="/edit-profile" className="btn btn-light">Edit Profile</Link>
         </div>
     )
 }

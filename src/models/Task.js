@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 
+
 const taskSchema = new mongoose.Schema({
     description:{
         type:String,
@@ -8,16 +9,16 @@ const taskSchema = new mongoose.Schema({
     },
     due_at:{
         type:Date,
-        default:null
+        required:true,
     },
     completed:{
         type:Boolean,
-        trim:true, 
         default:false
     },
     toBeReminded:{
-        type:Boolean,
-        default:null
+        type:Boolean, 
+        required:true,
+        default:null   
     },
     owner:{
         type:mongoose.Schema.Types.ObjectID,
