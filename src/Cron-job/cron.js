@@ -22,8 +22,8 @@ const checkOverdue = () => cron.schedule('29 21 * * *', () => {
         const msg = {
           to: user.email,
           from: 'abhi.sharma2800015@gmail.com',
-          subject: `${overdueAmount} Overdue Tasks`,
-          text: `${user.name}, you have ${overdueAmount} over tasks! Make sure you get them done.`
+          subject: `${overdueAmount} Tasks Overdue | TaskApp`,
+          text: `${user.name}, you have ${overdueAmount} tasks that are due for today. Make sure you get them done.`
         }
         sgMail.send(msg)
       }
