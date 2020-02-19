@@ -4,6 +4,7 @@ const auth = require('../../middleware/auth');
 const Profile = require('../../models/Profile');
 const User = require('../../models/User');
 const Task = require('../../models/Task');
+const {sendGoodbyeMail} = require('../../emails/account');
 
 //@route    GET api/profile/me
 //@desc     Get current User's Profile
@@ -127,12 +128,14 @@ router.get('/user/:user_id',async (req,res)=>{
 
 router.delete('/', auth, async (req,res)=>{
     try{
+        const user = await User.findById(req.user_id);
         //removing user profile
-        await Profile.findOneAndRemove({user:req.user_id});
+        await Profile.deleteOne({user:req.user_id});
         //Removing the User
-        await User.findOneAndRemove({_id:req.user_id});
+        await User.deleteOne({_id:req.user_id});
         //removing related tasks
-        await Task.remove({owner:req.user_id});
+        await Task.deleteMany({owner:req.user_id});
+        sendGoodbyeMail(user.email,user.name);
         res.json({msg:'User deleted'});
     } catch(error)
     {

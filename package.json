@@ -12,6 +12,7 @@
   "author": "Abhishek Sharma",
   "license": "ISC",
   "dependencies": {
+    "@sendgrid/mail": "^6.5.2",
     "bcryptjs": "^2.4.3",
     "config": "^3.2.5",
     "express-validator": "^6.4.0",
@@ -19,6 +20,7 @@
     "jsonwebtoken": "^8.5.1",
     "moment": "^2.24.0",
     "mongoose": "^5.8.11",
+    "node-cron": "^2.0.3",
     "request": "^2.88.0"
   },
   "devDependencies": {

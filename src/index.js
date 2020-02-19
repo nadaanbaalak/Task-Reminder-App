@@ -4,6 +4,7 @@ const taskRouter = require('./routes/api/tasks');
 const userRouter = require('./routes/api/users');
 const authRouter = require('./routes/api/auth');
 const profileRouter = require('./routes/api/profile');
+const checkOverdue = require('./Cron-job/cron');
 const app = express();
 
 
@@ -21,7 +22,7 @@ app.get('/',(req,res)=>{
 connectDB();
 
 const port = process.env.PORT || 5000;
-
+checkOverdue();
 
 app.listen(port,()=>{
     console.log(`Server running on port ${port}`);

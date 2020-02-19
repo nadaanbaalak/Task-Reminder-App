@@ -6,6 +6,7 @@ const jwt = require('jsonwebtoken');
 const config = require('config')
 const router = express.Router();
 const User = require('../../models/User')
+const {sendWelcomeMail} = require('../../emails/account');
 
 //@route  POST /api/users
 //@desc   Register a user
@@ -48,6 +49,7 @@ router.post('/',[
         jwt.sign({id:user.id},config.get('jwtSecret'),{expiresIn:360000},(error,token)=>{
             if(error)
                 throw error;
+            sendWelcomeMail(user.email,user.name);
             return res.json({token})
         })
 

@@ -1,4 +1,5 @@
 {
     "mongoURI":"mongodb+srv://abhishek:Hathi420@taskapp-tapyx.mongodb.net/test?retryWrites=true&w=majority",
-    "jwtSecret":"oneTwoKaFour"
+    "jwtSecret":"oneTwoKaFour",
+    "sgAPIKey":"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"
 }
