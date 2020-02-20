@@ -8,21 +8,22 @@ import {deleteTask,getTaskById} from '../../actions/task';
 
 const TaskItem = ({auth,deleteTask,getTaskById,task:{_id,due_at,date,description,completed}}) => {
     return (
-        <div className="post bg-white p-1 my-1">
-            <div>
+        <div className="task">
                 <p className="my-1">
                     {description}
                 </p>
-                <p className="post-date">
+                <p className="task-date">
                     Created on <Moment format='DD/MM/YYYY'>{date}</Moment>
                 </p>
                 <p ><b>Due by :</b> <Moment format='DD/MM/YYYY'>{due_at}</Moment></p>
                 <p><b>Status :</b>{completed===true?'Completed':'Pending'}</p>
-                {completed===false?(<Link to={`/edit-task/${_id}`} className="btn btn-primary">Update</Link>):<Fragment/>}                
-                <button onClick={e=>deleteTask(_id)} type="button" className="btn btn-danger">
-                    <i className="fas fa-times"></i>
-                </button>
-            </div>
+                <div>
+                    {completed===false?(<Link to={`/edit-task/${_id}`} className="btn btn-primary">Update</Link>):<Fragment/>}                
+                    <button onClick={e=>deleteTask(_id)} type="button" className="btn btn-danger">
+                        Delete
+                    </button>
+                </div>
+                
       </div>
     ) 
 }

@@ -16,7 +16,7 @@ const Tasks = ({getTasks, task:{tasks,loading}}) => {
             <Link className="btn btn-dark my-1" to="/create-task">Create Task</Link>
             {tasks.length>0?(
                     <Fragment>
-                        <div className="posts">
+                        <div className="tasks">
                             {tasks.map(task=>(
                                 <TaskItem key={task._id} task={task}/>
                             ))}
