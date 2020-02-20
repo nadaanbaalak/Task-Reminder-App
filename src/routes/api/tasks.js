@@ -23,7 +23,6 @@ router.post('/', [auth,[
             ...req.body,
             owner:req.user_id
         });
-        console.log(task)
         await task.save();
         console.log('1->4')
         res.status(201).send(task);
