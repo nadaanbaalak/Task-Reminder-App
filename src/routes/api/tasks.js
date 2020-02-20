@@ -13,14 +13,12 @@ router.post('/', [auth,[
     check('description','Description is required').not().isEmpty()
 ]], async (req,res)=>{
     const errors = validationResult(req);
-    console.log('1->1')
     if(!errors.isEmpty())
     {
         return res.status(400).send({err:errors.array()});
     }
     
     try{
-        console.log('1->2')
         const task = new Task({
             ...req.body,
             owner:req.user_id
@@ -33,7 +31,6 @@ router.post('/', [auth,[
         console.log('1->5')
     } catch(error)
     {
-        console.log('1->6')
         res.status(500).send(error);
     }
 
