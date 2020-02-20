@@ -8,6 +8,11 @@ const router = express.Router();
 const User = require('../../models/User')
 const {sendWelcomeMail} = require('../../emails/account');
 
+
+require('dotenv').config()
+
+
+
 //@route  POST /api/users
 //@desc   Register a user
 //@access Public
@@ -46,7 +51,7 @@ router.post('/',[
         user.password = await bcrypt.hash(password,salt);
         await user.save();
         //Return JWT so that user is logged in after registering
-        jwt.sign({id:user.id},config.get('jwtSecret'),{expiresIn:360000},(error,token)=>{
+        jwt.sign({id:user.id},process.env.JWT_SECRET,{expiresIn:360000},(error,token)=>{
             if(error)
                 throw error;
             sendWelcomeMail(user.email,user.name);

@@ -2,9 +2,10 @@ const cron = require('node-cron')
 const User = require('../models/User');
 const Task = require('../models/Task');
 const sgMail = require('@sendgrid/mail');
-const config = require('config')
+//const config = require('config')
+require('dotenv').config()
 
-sgMail.setApiKey(config.get('sgAPIKey'));
+sgMail.setApiKey(process.env.SG_API_KEY);
 
 const checkOverdue = () => cron.schedule('40 4 * * *', () => {
   User.find({}).then((users) => {

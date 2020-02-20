@@ -1,12 +1,13 @@
 const express = require('express');
 const {check,validationResult} = require('express-validator');
 const jwt = require('jsonwebtoken');
-const config = require('config');
 const bcrypt = require('bcryptjs');
 const router = express.Router();
 const auth = require('../../middleware/auth');
 
 const User = require('../../models/User')
+
+require('dotenv').config()
 
 //@route GET api/auth
 //@desc  get user by token
@@ -49,7 +50,7 @@ router.post('/',[
             return res.status(400).json({error:[{msg:'Invalid Credentials'}]})
         }
         //Return JWT so that user is logged in after registering
-        jwt.sign({id:user.id},config.get('jwtSecret'),{expiresIn:360000},(error,token)=>{
+        jwt.sign({id:user.id},process.env.JWT_SECRET,{expiresIn:360000},(error,token)=>{
             if(error)
                 throw error;
             return res.send({token});
