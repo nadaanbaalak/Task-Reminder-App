@@ -6,7 +6,7 @@ import {connect} from 'react-redux';
 import {deleteTask,getTaskById} from '../../actions/task';
 
 
-const TaskItem = ({auth,deleteTask,getTaskById,task:{_id,due_at,date,description}}) => {
+const TaskItem = ({auth,deleteTask,getTaskById,task:{_id,due_at,date,description,completed}}) => {
     return (
         <div className="post bg-white p-1 my-1">
             <div>
@@ -17,7 +17,8 @@ const TaskItem = ({auth,deleteTask,getTaskById,task:{_id,due_at,date,description
                     Created on <Moment format='DD/MM/YYYY'>{date}</Moment>
                 </p>
                 <p ><b>Due by :</b> <Moment format='DD/MM/YYYY'>{due_at}</Moment></p>
-                <Link to={`/edit-task`} onClick={e=>getTaskById(_id)} className="btn btn-primary">Update</Link>
+                <p><b>Status :</b>{completed===true?'Completed':'Pending'}</p>
+                {completed===false?(<Link to={`/edit-task/${_id}`} className="btn btn-primary">Update</Link>):<Fragment/>}                
                 <button onClick={e=>deleteTask(_id)} type="button" className="btn btn-danger">
                     <i className="fas fa-times"></i>
                 </button>

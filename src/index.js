@@ -5,7 +5,13 @@ const userRouter = require('./routes/api/users');
 const authRouter = require('./routes/api/auth');
 const profileRouter = require('./routes/api/profile');
 const checkOverdue = require('./Cron-job/cron');
+const path = require('path');
+
+
 const app = express();
+
+//connecting to Database
+connectDB();
 
 
 //to parse the incoming Request Data
@@ -15,11 +21,15 @@ app.use('/api/tasks',taskRouter);
 app.use('/api/auth',authRouter);
 app.use('/api/profile',profileRouter);
 
-app.get('/',(req,res)=>{
-    res.send('API up and Running');
-})
-//connecting to Database
-connectDB();
+//Serve static assets in production
+if(process.env.NODE_ENV==='production') {
+    //Set static folder
+    app.use(express.static('clent/build'));
+    app.get('*',(req,res)=>{
+        res.sendFile(path.resolve(__dirname, 'client', 'build','index.html'))
+    });
+
+} 
 
 const port = process.env.PORT || 5000;
 checkOverdue();

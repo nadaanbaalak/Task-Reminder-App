@@ -25,7 +25,10 @@ const Profiles = ({getProfiles,profile:{profiles,loading}}) =>{
     </Fragment>;
 };
 
-Profiles.propTypes = {};
+Profiles.propTypes = {
+    getProfiles:PropTypes.func.isRequired,
+    profile:PropTypes.object.isRequired
+};
 
 const mapStateToProps = state =>({
     profile:state.profile

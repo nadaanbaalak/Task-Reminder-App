@@ -1,4 +1,4 @@
-import React, {useState,Fragment} from 'react';
+import React, {useState,Fragment,useEffect} from 'react';
 import moment from 'moment';
 import {Link,withRouter} from 'react-router-dom';
 import PropTypes from 'prop-types';
@@ -6,20 +6,31 @@ import {connect} from 'react-redux';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { addDays } from 'date-fns';
-import {updateTask} from '../../actions/task';
+import {updateTask,getTaskById} from '../../actions/task';
 
 
-const EditTask = ({updateTask,Task:{task,loading},history}) =>{
+const EditTask = ({updateTask,getTaskById,Task:{task,loading},history,match}) =>{
+    console.log(task)
     const [formData,setFormData] = useState({
         description:'',
         due_at:'',
-        toBeReminded:''
+        toBeReminded:'',
+        completed:''
     });
+    
     
     const onSubmit = e=>{
         e.preventDefault();
         updateTask(task._id,formData,history);
     }
+    useEffect(()=>{
+        getTaskById(match.params.id);
+        // setFormData({
+        //     description: loading || !task.description?'':task.description
+        //     //due_at: loading || !task.due_at?'':task.due_at      
+        // }),loading,task.description
+    },[match.params.id,getTaskById])
+
 
     const onChange = e=>setFormData({...formData, [e.target.name]:e.target.value})
     const onChangeDate = (date) => {
@@ -35,6 +46,7 @@ const EditTask = ({updateTask,Task:{task,loading},history}) =>{
             </h1>
             <form className="form" onSubmit={e=>onSubmit(e)}>
                 <div className="form-group">
+                <label htmlFor="descr">Description:</label><br/>
                 <input type="text" placeholder="Task Description" name="description" value={description} onChange={e=> onChange(e)}/>
                 <small className="form-text">Task Description</small>
                 </div>    
@@ -43,11 +55,18 @@ const EditTask = ({updateTask,Task:{task,loading},history}) =>{
                     <DatePicker minDate={addDays(new Date(), 1)} id="due_date" name="due_at" value={due_at} onChange={(date)=> onChangeDate(date)} />
                 </div>
                 <div className="form-group">
-                    <label htmlFor="reminder">Set Reminder:</label><br></br>
-                    <input type="radio" id="yes" name="toBeReminded"  value="true" onClick={e=> onChange(e)}/>
-                    <label htmlFor="yes">Yes</label><br/>
-                    <input type="radio" id="no" name="toBeReminded" value="false" onClick={e=> onChange(e)}/>
-                    <label htmlFor="no">No</label><br/>  
+                    <label>Set Reminder:</label><br></br>
+                    <input type="radio" id="yesR" name="toBeReminded"  value="true" onClick={e=> onChange(e)}/>
+                    <label htmlFor="yesR">Yes</label><br/>
+                    <input type="radio" id="noR" name="toBeReminded" value="false" onClick={e=> onChange(e)}/>
+                    <label htmlFor="noR">No</label><br/>  
+                </div>
+                <div className="form-group">
+                    <label>Status:</label><br></br>
+                    <input type="radio" id="yes" name="completed"  value="true" onClick={e=> onChange(e)}/>
+                    <label htmlFor="yes">Completed</label><br/>
+                    <input type="radio" id="no" name="completed" value="false" onClick={e=> onChange(e)}/>
+                    <label htmlFor="no">Pending</label><br/>  
                 </div>
                 <input type="submit" className="btn btn-primary my-1" />
                 <Link className="btn btn-light my-1" to="/tasks">Go Back</Link>
@@ -58,6 +77,7 @@ const EditTask = ({updateTask,Task:{task,loading},history}) =>{
 
 EditTask.propTypes = {
     updateTask:PropTypes.func.isRequired,
+    getTaskById:PropTypes.func.isRequired,
     Task:PropTypes.object.isRequired
 }
 
@@ -66,4 +86,4 @@ const mapStateToProps = (state) => ({
 });
 
 
-export default connect(mapStateToProps,{updateTask})(withRouter(EditTask));
+export default connect(mapStateToProps,{updateTask,getTaskById})(withRouter(EditTask));

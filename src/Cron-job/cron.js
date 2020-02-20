@@ -6,24 +6,26 @@ const config = require('config')
 
 sgMail.setApiKey(config.get('sgAPIKey'));
 
-const checkOverdue = () => cron.schedule('29 21 * * *', () => {
+const checkOverdue = () => cron.schedule('40 4 * * *', () => {
   User.find({}).then((users) => {
     users.forEach(async function(user) {
-      const tasks = await Task.find({ owner: user._id })
+      const tasks = await Task.find({ owner: user._id,completed:false })
       let overdueAmount = 0
-  
-      tasks.forEach((task) => {
-        if (task.due_at && (task.due_at < new Date() && task.toBeReminded===true)) {
-          overdueAmount = overdueAmount + 1
+        let taskList='';
+      tasks.forEach(async (task) => {
+        if (task.due_at && (task.due_at < new Date() && task.toBeReminded===true && task.completed===false)) {
+          overdueAmount = overdueAmount + 1;
+          taskList+=  overdueAmount+'. '+task.description+'.'
+          task.completed=true;
         }
+        await task.save()
       })
-  
       if (overdueAmount > 0) {
         const msg = {
           to: user.email,
           from: 'abhi.sharma2800015@gmail.com',
           subject: `${overdueAmount} Tasks Overdue | TaskApp`,
-          text: `${user.name}, you have ${overdueAmount} tasks that are due for today. Make sure you get them done.`
+          text: `${user.name}, you have ${overdueAmount} tasks that are due for today. Make sure you get them done. ${taskList}`
         }
         sgMail.send(msg)
       }

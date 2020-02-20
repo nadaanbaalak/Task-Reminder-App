@@ -33,9 +33,9 @@ const EditProfile = ({createProfile,getCurrentProfile,profile:{profile,loading},
             bio: loading || !profile.bio?'':profile.bio,
             twitter: loading || !profile.twitter?'':profile.twitter,
             facebook: loading || !profile.facebook?'':profile.facebook,
-            instagram: loading || !profile.instagram?'':profile.instagram,
+            instagram: loading || !profile.instagram?'':profile.instagram
         })
-    },[loading,getCurrentProfile]);
+    },[loading,getCurrentProfile,profile.location,profile.age,profile.bio,profile.twitter,profile.facebook,profile.instagram]);
 
 
     const {location,age,bio,twitter,facebook,instagram} = formData;

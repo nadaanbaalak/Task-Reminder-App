@@ -52,7 +52,7 @@ router.patch('/:id', [auth,[
         return res.status(400).send({err:errors.array()})
     }
     const updates = Object.keys(req.body);
-    const allowedUpdates = ['description', 'due_at','toBeReminded'];
+    const allowedUpdates = ['description', 'due_at','toBeReminded','completed'];
     const isValidOp = updates.every((update)=>{
         return allowedUpdates.includes(update);
     });

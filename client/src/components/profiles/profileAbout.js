@@ -10,10 +10,10 @@ const ProfileAbout = ({
     }
 })=>{
     return (
-        <div class="profile-about bg-light p-2">
+        <div className="profile-about bg-light p-2">
             {bio && (
                 <Fragment>
-                    <h2 class="text-primary">{name}'s Bio</h2>
+                    <h2 className="text-primary">{name}'s Bio</h2>
                     <p>
                         {bio}
                     </p>
