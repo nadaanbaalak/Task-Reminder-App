@@ -16,7 +16,6 @@ import NotFound from '../layout/notFound';
 
 const Routes = ()=>{
     return (
-        <div>
             <section className="container">
                 <Alert />
                 <Switch>
@@ -33,8 +32,6 @@ const Routes = ()=>{
                 <Route component={NotFound}/>
                 </Switch>
             </section>
-
-        </div>
     )
 }
 
