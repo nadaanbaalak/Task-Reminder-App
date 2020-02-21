@@ -14,7 +14,9 @@ const app = express();
 connectDB();
 
 
-
+app.get('/',(req,res)=>{
+    res.send({"msg":"Success"})
+});
 
 //to parse the incoming Request Data
 app.use(express.json({extended:false}));
