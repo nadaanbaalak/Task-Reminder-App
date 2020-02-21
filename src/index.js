@@ -40,7 +40,7 @@ checkOverdue();
 
 app.listen(port,()=>{
     console.log(`Server running on port ${port}`);
-    console.log(path.resolve(__dirname, '../client/build'))
+    //console.log(path.resolve(__dirname, '../client/build'))
 });
 //process.on('SIGINT', () => { console.log("Bye bye!"); process.exit(); })
 //"heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
