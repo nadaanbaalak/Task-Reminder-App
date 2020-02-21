@@ -11,9 +11,9 @@ import {
 } from './types';
 
 //get a single task by id
-export const getTaskById = (taskId) =>async dispatch =>{
+export const getTaskById = (taskId) => dispatch =>{
     try {
-        const res = await axios.get(`/api/tasks/${taskId}`);
+        const res = axios.get(`/api/tasks/${taskId}`);
         dispatch({
             type:GET_TASK,
             payload:res.data

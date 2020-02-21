@@ -10,7 +10,7 @@ import {updateTask,getTaskById} from '../../actions/task';
 
 
 const EditTask = ({updateTask,getTaskById,Task:{task,loading},history,match}) =>{
-    console.log(task)
+    console.log(`${task} From inside task update`)
     const [formData,setFormData] = useState({
         description:'',
         due_at:'',
@@ -23,13 +23,26 @@ const EditTask = ({updateTask,getTaskById,Task:{task,loading},history,match}) =>
         e.preventDefault();
         updateTask(task._id,formData,history);
     }
-    useEffect(()=>{
-        getTaskById(match.params.id);
-        // setFormData({
-        //     description: loading || !task.description?'':task.description
-        //     //due_at: loading || !task.due_at?'':task.due_at      
-        // }),loading,task.description
-    },[match.params.id,getTaskById])
+//     useEffect(()=>{
+//         console.log(` Inside useEffect`);// useEffect(()=>{
+//         //console.log(`${task} Inside useEffect`);
+//         getTaskById(match.params.id);
+// //         return ()=>{
+// // // 
+// //         }
+        
+//         setFormData({
+//             description: loading || !task.description?'':task.description
+//             //due_at: loading || !task.due_at?'':task.due_at      
+//         })//,loading,task.description  match.params.id,getTaskById
+//     },[match.params.id,getTaskById,loading,task.description])
+    //     //getTaskById(match.params.id);
+
+    //     // setFormData({
+    //     //     description: loading || !task.description?'':task.description
+    //     //     //due_at: loading || !task.due_at?'':task.due_at      
+    //     // })//,loading,task.description
+    // },[match.params.id,getTaskById])
 
 
     const onChange = e=>setFormData({...formData, [e.target.name]:e.target.value})

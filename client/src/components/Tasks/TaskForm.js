@@ -22,7 +22,7 @@ const TaskForm = ({addTask}) =>{
     }
     const onChange = e=> setFormData({...formData, [e.target.name]:e.target.value})
     const onChangeDate = (date) => {
-        console.log(date);
+        //console.log(date);
        setFormData({...formData, due_at: moment(date).format("MM-DD-YYYY")})
         //console.log('date : ',date )
     }
