@@ -38,3 +38,4 @@ app.listen(port,()=>{
     console.log(`Server running on port ${port}`);
 });
 //process.on('SIGINT', () => { console.log("Bye bye!"); process.exit(); })
+//"heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
