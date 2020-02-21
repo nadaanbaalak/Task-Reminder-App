@@ -37,4 +37,4 @@ checkOverdue();
 app.listen(port,()=>{
     console.log(`Server running on port ${port}`);
 });
-process.on('SIGINT', () => { console.log("Bye bye!"); process.exit(); })
+//process.on('SIGINT', () => { console.log("Bye bye!"); process.exit(); })
