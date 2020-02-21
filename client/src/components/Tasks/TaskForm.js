@@ -22,6 +22,7 @@ const TaskForm = ({addTask}) =>{
     }
     const onChange = e=> setFormData({...formData, [e.target.name]:e.target.value})
     const onChangeDate = (date) => {
+        console.log(date);
        setFormData({...formData, due_at: moment(date).format("MM-DD-YYYY")})
         //console.log('date : ',date )
     }
@@ -40,7 +41,7 @@ const TaskForm = ({addTask}) =>{
                 </div>
                 <div className="form-group">
                     <label htmlFor="due_date">Due Date for Task:</label><br></br>
-                    <DatePicker minDate={addDays(new Date(), 1)} id="due_date" name="due_at" value={due_at} onChange={(date)=> onChangeDate(date)} />
+                    <DatePicker minDate={addDays(Date(), 1)} id="due_date" name="due_at" value={due_at} onChange={(date)=> onChangeDate(date)} />
                 </div>
                 <div className="form-group">
                     <label htmlFor="reminder">Set Reminder:</label><br></br>
