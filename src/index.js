@@ -27,20 +27,10 @@ app.use('/api/profile',profileRouter);
 const port = process.env.PORT || 5000;
 checkOverdue();
 
-// if(process.env.NODE_ENV==='production') {
-//     //Set static folder
-//     //app.use(express.static(path.resolve(__dirname, '../client/build')));
-//     app.get('*',(req,res)=>{
-//         res.sendFile(path.resolve(__dirname, '../client', 'build','index.html'))
-//     });
-
-// } 
 
 
 
 app.listen(port,()=>{
     console.log(`Server running on port ${port}`);
-    //console.log(path.resolve(__dirname, '../client/build'))
+    
 });
-//process.on('SIGINT', () => { console.log("Bye bye!"); process.exit(); })
-//"heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"

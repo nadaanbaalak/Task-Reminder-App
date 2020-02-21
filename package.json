@@ -5,9 +5,7 @@
   "main": "index.js",
   "scripts": {
     "server": "nodemon src/index.js",
-    "start": "node ./src/index.js",
-    "client": "cd client && npm start",
-    "dev": "concurrently \"npm run start\" \"npm run client\""
+    "start": "node ./src/index.js"
   },
   "author": "Abhishek Sharma",
   "license": "ISC",
