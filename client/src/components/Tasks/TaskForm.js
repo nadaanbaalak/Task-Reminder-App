@@ -41,7 +41,7 @@ const TaskForm = ({addTask}) =>{
                 </div>
                 <div className="form-group">
                     <label htmlFor="due_date">Due Date for Task:</label><br></br>
-                    <DatePicker minDate={addDays(Date(), 1)} id="due_date" name="due_at" value={due_at} onChange={(date)=> onChangeDate(date)} />
+                    <DatePicker minDate={addDays(new Date(), 1)} id="due_date" name="due_at" value={due_at} onChange={(date)=> onChangeDate(date)} />
                 </div>
                 <div className="form-group">
                     <label htmlFor="reminder">Set Reminder:</label><br></br>
