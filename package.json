@@ -5,7 +5,10 @@
   "main": "index.js",
   "scripts": {
     "server": "nodemon src/index.js",
-    "start": "node src/index.js"
+    "start": "node src/index.js",
+    "client": "cd client && npm start",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "heroku-postbuild": "cd client && npm install --only=dev && npm install && npm run build"
   },
   "author": "Abhishek Sharma",
   "license": "ISC",
@@ -24,6 +27,7 @@
     "request": "^2.88.0"
   },
   "devDependencies": {
-    "concurrently": "^5.1.0"
+    "concurrently": "^5.1.0",
+    "nodemon": "^2.0.2"
   }
 }
