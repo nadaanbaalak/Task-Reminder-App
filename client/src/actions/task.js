@@ -98,7 +98,8 @@ export const addTask = (formData, history) => async dispatch => {
     });
     console.log(3);
     dispatch(setAlert("Task Added", "success"));
-    history.push("/tasks");
+
+    //history.push("/tasks");
   } catch (error) {
     //console.log('Inside catch')
     dispatch({

@@ -22,6 +22,14 @@ const EditProfile = ({
   const onSubmit = e => {
     e.preventDefault();
     createProfile(formData, history, true);
+    setFormData({
+      location: "",
+      age: "",
+      bio: "",
+      twitter: "",
+      facebook: "",
+      instagram: ""
+    });
   };
 
   const onChange = e =>
@@ -40,16 +48,7 @@ const EditProfile = ({
       facebook: loading || !profile.facebook ? "" : profile.facebook,
       instagram: loading || !profile.instagram ? "" : profile.instagram
     });
-  }, [
-    loading,
-    getCurrentProfile,
-    profile.location,
-    profile.age,
-    profile.bio,
-    profile.twitter,
-    profile.facebook,
-    profile.instagram
-  ]);
+  }, []);
 
   const { location, age, bio, twitter, facebook, instagram } = formData;
 

@@ -1,7 +1,7 @@
 /* Global Styles */
 :root {
   --primary-color: #17a2b8;
-  --dark-color: #343a40;
+  --dark-color: rgb(0, 0, 0);
   --light-color: #f4f4f4;
   --danger-color: #dc3545;
   --success-color: #28a745;
@@ -14,7 +14,7 @@
 }
 
 body {
-  font-family: 'Raleway', sans-serif;
+  font-family: "Raleway", sans-serif;
   font-size: 1rem;
   line-height: 1.6;
   background-color: #fff;
@@ -61,7 +61,6 @@ img {
   font-size: 1.5rem;
   margin-bottom: 1rem;
 }
-
 
 .text-primary {
   color: var(--primary-color);
@@ -223,7 +222,7 @@ img {
 
 /* Overlay */
 .dark-overlay {
-  background-color: rgba(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.7);
   position: absolute;
   top: 0;
   left: 0;
@@ -242,10 +241,10 @@ img {
   color: #888;
 }
 
-.form input[type='text'],
-.form input[type='email'],
-.form input[type='password'],
-.form input[type='date'],
+.form input[type="text"],
+.form input[type="email"],
+.form input[type="password"],
+.form input[type="date"],
 .form select,
 .form textarea {
   display: block;
@@ -255,7 +254,7 @@ img {
   border: 1px solid #ccc;
 }
 
-.form input[type='submit'],
+.form input[type="submit"],
 button {
   font: inherit;
 }
@@ -329,7 +328,7 @@ button {
 /* Landing Page */
 .landing {
   position: relative;
-  background: url('./img/showcase.jpg') no-repeat center center/cover;
+  background: url("./img/showcase.jpg") no-repeat center center/cover;
   height: 100vh;
 }
 
@@ -360,10 +359,10 @@ button {
 .profile-grid {
   display: grid;
   grid-template-areas:
-    'top top'
-    'about about'
-    'exp edu'
-    'github github';
+    "top top"
+    "about about"
+    "exp edu"
+    "github github";
   grid-gap: 1rem;
 }
 
@@ -401,15 +400,13 @@ button {
 }
 
 .task {
-  display:flex;
+  display: flex;
   flex-direction: column;
-  border:1px solid black;
-  padding:10px;
-  margin:5px 0px;
-  border-radius:2px;
+  border: 1px solid black;
+  padding: 10px;
+  margin: 5px 0px;
+  border-radius: 2px;
 }
-
-
 
 .task .task-date {
   color: #aaa;
@@ -479,16 +476,14 @@ button {
 
   .profile-grid {
     grid-template-areas:
-      'top'
-      'about'
-      'exp'
-      'edu'
-      'github';
+      "top"
+      "about"
+      "exp"
+      "edu"
+      "github";
   }
 
   .dash-buttons a {
-    display: block;
-    width: 100%;
     margin-bottom: 0.2rem;
   }
 
