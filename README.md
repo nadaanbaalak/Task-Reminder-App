@@ -2,7 +2,7 @@
 A MERN stack app to remind / notify user of Task due on that day on a daily Basis.
 Uses Cron to send email daily at 8 in the morning ot notify user of Due tasks for the day.
 
-##Instruction's on how to use
+## Instruction's on how to use
 
 Clone or Download the Repo
 
@@ -15,4 +15,5 @@ Run __npm i__
 
 Cd into client folder and again run __npm i__
 
+Now run __npm run dev__
 
