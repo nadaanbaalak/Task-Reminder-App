@@ -8,7 +8,7 @@ require("dotenv").config();
 sgMail.setApiKey(process.env.SG_API_KEY);
 
 const checkOverdue = () =>
-  cron.schedule("00 8 * * *", () => {
+  cron.schedule("55 7 * * *", () => {
     User.find({}).then(users => {
       users.forEach(async function(user) {
         const tasks = await Task.find({ owner: user._id, completed: false });
