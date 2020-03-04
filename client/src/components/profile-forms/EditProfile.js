@@ -55,7 +55,6 @@ const EditProfile = ({
   return (
     <Fragment>
       <h1 className="large text-primary">Tell us more about yourself</h1>
-      <small>* = required field</small>
       <form className="form" onSubmit={e => onSubmit(e)}>
         <div className="form-group">
           <input
