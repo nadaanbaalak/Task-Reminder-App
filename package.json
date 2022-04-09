@@ -21,7 +21,7 @@
     "express-validator": "^6.4.0",
     "gravatar": "^1.8.0",
     "jsonwebtoken": "^8.5.1",
-    "moment": "^2.24.0",
+    "moment": "^2.29.2",
     "mongoose": "^5.8.11",
     "node-cron": "^2.0.3",
     "request": "^2.88.0"
